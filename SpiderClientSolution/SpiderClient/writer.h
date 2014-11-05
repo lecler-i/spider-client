@@ -16,17 +16,17 @@ public:
 	~writer();
 
 	void putOnFile();
-	void clean_buff();
+	void clean_file();
 
 	std::string	getBuff();
 	void	setBuff(std::string);
 	void	setMod(int);
-	int		getMod();
+	int		getMod() const;
 
 private:
 	std::string		buff;
 	std::fstream	stream;
-	int				mod;
+	int				mod; // attention ne sert surement a rien pas oublié d'enlever
 };
 
 

@@ -9,7 +9,7 @@ void	writer::putOnFile()
 	this->stream.close();
 }
 
-void	clean_file()
+void	writer::clean_file()
 {
 	int	i;
 
@@ -32,7 +32,7 @@ void			writer::setMod(int m)
 	this->mod = m;
 }
 
-int				writer::getMod() { return (this->mod); }
+int				writer::getMod() const { return (this->mod); }
 
 writer::writer()
 {

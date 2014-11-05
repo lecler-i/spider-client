@@ -153,6 +153,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\ClientDll\data.h" />
+    <ClInclude Include="Core.h" />
     <ClInclude Include="Injector.h" />
     <ClInclude Include="SharedMemoryServer.h" />
     <ClInclude Include="stdafx.h" />
@@ -160,6 +161,7 @@
     <ClInclude Include="writer.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Core.cpp" />
     <ClCompile Include="Injector.cpp" />
     <ClCompile Include="SharedMemoryServer.cpp" />
     <ClCompile Include="SpiderClient.cpp" />
