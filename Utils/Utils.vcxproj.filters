@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Windows">
+      <UniqueIdentifier>{f34587b9-cc9a-4762-9186-34f2a256985c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Windows\Sources">
+      <UniqueIdentifier>{47995619-4b44-4436-acfe-cd7f9f88250a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Windows\Includes">
+      <UniqueIdentifier>{209d4909-b70e-4e77-a3fd-90caf283a88b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Unix">
+      <UniqueIdentifier>{a34dbab0-6916-4306-b8e9-f0114397d6b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Unix\Includes">
+      <UniqueIdentifier>{d1f3d29f-1ac3-45a8-af22-16120fc3c62f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Unix\Sources">
+      <UniqueIdentifier>{f3ae307f-e2d4-440c-9b8c-0935f43a9ca5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common">
+      <UniqueIdentifier>{76473e53-396f-49fe-8584-caf9dc43c902}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Sources">
+      <UniqueIdentifier>{596a92f5-f52f-4f89-8f34-2eafc8540dba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Includes">
+      <UniqueIdentifier>{34bb2b97-671f-4e0e-83c8-acabf6f4e1e1}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="unix\includes\Mutex.hh" />
+    <ClInclude Include="unix\includes\Thread.hh" />
+    <ClInclude Include="common\includes\SharedPtr.hh" />
+    <ClInclude Include="common\includes\Singleton.hh" />
+    <ClInclude Include="common\includes\WeakPtr.hh" />
+    <ClInclude Include="common\includes\Exceptions.hh" />
+    <ClInclude Include="common\includes\Vector2.hh" />
+    <ClInclude Include="common\includes\Vector3.hh" />
+    <ClInclude Include="common\includes\Vector4.hh" />
+    <ClInclude Include="common\includes\Utils.hh" />
+    <ClInclude Include="common\includes\ILockable.hh" />
+    <ClInclude Include="common\includes\EventManager.hh" />
+    <ClInclude Include="Common\Includes\IThread.hh" />
+    <ClInclude Include="Common\Includes\Thread.hh" />
+    <ClInclude Include="windows\Includes\ThreadWindows.hh">
+      <Filter>Common\Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="common\includes\Ini.hh" />
+    <ClInclude Include="Common\Includes\Mutex.hh" />
+    <ClInclude Include="Common\Includes\IMutex.hh" />
+    <ClInclude Include="windows\Includes\MutexWindows.hh">
+      <Filter>Common\Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\Includes\IDynamicLibrary.hh" />
+    <ClInclude Include="Common\Includes\DynamicLibrary.hh" />
+    <ClInclude Include="windows\Includes\DynamicLibraryWindows.hh">
+      <Filter>Common\Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\Includes\ScopedMutex.hh" />
+    <ClInclude Include="common\includes\ITCPServer.hh" />
+    <ClInclude Include="common\includes\ITCPClient.hh" />
+    <ClInclude Include="windows\Includes\TCPServerWindows.hh">
+      <Filter>Common\Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="windows\Includes\TCPClientWindows.hh">
+      <Filter>Common\Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\Includes\TCPServer.hh" />
+    <ClInclude Include="Common\Includes\TCPClient.hh" />
+    <ClInclude Include="Unix\Includes\DynamicLibraryUnix.hh" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="common\sources\ClientSocket.cpp">
+      <Filter>Common\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="common\sources\EventManager.cpp">
+      <Filter>Common\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="common\sources\Exceptions.cpp">
+      <Filter>Common\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="common\sources\Ini.cpp">
+      <Filter>Common\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="common\sources\ServerSocket.cpp">
+      <Filter>Common\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="common\sources\Vector2.cpp">
+      <Filter>Common\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="common\sources\Vector3.cpp">
+      <Filter>Common\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="common\sources\Vector4.cpp">
+      <Filter>Common\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Windows\Sources\ThreadWindows.cpp" />
+    <ClCompile Include="Windows\Sources\MutexWindows.cpp">
+      <Filter>Common\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Windows\Sources\DynamicLibraryWindows.cpp" />
+    <ClCompile Include="Common\Sources\ScopedMutex.cpp" />
+    <ClCompile Include="Windows\Sources\TCPServerWindows.cpp" />
+    <ClCompile Include="Windows\Sources\TCPClientWindows.cpp" />
+    <ClCompile Include="Unix\Sources\DynamicLibraryUnix.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Makefile" />
+  </ItemGroup>
+</Project>
