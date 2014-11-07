@@ -5,6 +5,7 @@
 #include <windows.h>
 #include "TCPClient.hh"
 #include "ThreadWindows.hh"
+#include "Protocole.h"
 
 class Core
 {
@@ -27,7 +28,8 @@ private:
 	std::string				_IP;
 	int						_PORT;
 	int						_mod;
-	//Proto					*data;
+	Protocole				_data;
+	t_msg					_msg;
 	//	int					_myID; > myID sera dans l'objet proto. on fera un get dessus
 };
 
