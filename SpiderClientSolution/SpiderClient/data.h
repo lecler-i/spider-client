@@ -1,8 +1,11 @@
 #pragma once
 
+#include <Windows.h>
+
 enum DataType
 {
-	KEYPRESS = 0,
+	NONE = 0,
+	KEYPRESS,
 	MOUSELOG
 };
 
@@ -19,6 +22,7 @@ struct MouseLog
 
 struct Data
 {
+	DWORD		pid;
 	DataType	t;
 	union {
 		KeyPress	key;

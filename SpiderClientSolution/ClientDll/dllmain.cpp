@@ -6,11 +6,7 @@
 
 #include "KeyloggerDll.h"
 
-//#include <boost/interprocess/windows_shared_memory.hpp>
-//#include <boost/interprocess/mapped_region.hpp>
-
 KeyloggerDll *core = NULL;
-
 
 DWORD WINAPI MainRoutine(LPVOID lpParm)
 {
